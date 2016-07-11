@@ -41,7 +41,7 @@ Link: "http://i.imgur.com/NKZ3b98.gif"
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
-
+- Add Search bar for Line View state
 Describe any challenges encountered while building the app.
 
 
