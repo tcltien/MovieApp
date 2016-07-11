@@ -11,9 +11,10 @@ import AFNetworking
 import MBProgressHUD
 import SwiftyDrop
 
-class MovieViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class MovieViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     
    
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var viewTypeToggle: UIBarButtonItem!
     @IBOutlet weak var movieCollectionView: UICollectionView!
     @IBOutlet weak var movieTableView: UITableView!
@@ -25,6 +26,8 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
     var isMoreDataLoading = false
     var currentListView: UIScrollView?
     var isTable = true
+    
+    var filteredData: [NSDictionary]!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,6 +52,8 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         movieTableView.delegate = self
         movieCollectionView.dataSource = self
         movieCollectionView.delegate = self
+        searchBar.delegate = self
+        filteredData = movies
        
     }
     
@@ -232,7 +237,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         movieTableView.hidden = false
        
         refreshControl.removeFromSuperview()
-         movieTableView.addSubview(refreshControl)
+        movieTableView.addSubview(refreshControl)
         viewTypeToggle.image = UIImage(named: "collection-button")
         movieTableView.contentInset = UIEdgeInsets(top: topLayoutGuide.length, left: 0, bottom: 0, right: 0)
         currentListView = movieTableView
@@ -277,6 +282,27 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         } else {
             useTableView()
         }
-
     }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        movies = searchText.isEmpty ? movies : movies!.filter({(dataString) -> Bool in
+            let text = dataString["title"] as! String
+            return text.rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil
+        })
+        
+        movieTableView.reloadData()
+        
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = true
+    }
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        view.endEditing(true)
+        networkRequest(isTable)
+        movieTableView.reloadData()
+    }
+    
 }
