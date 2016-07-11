@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  MoviesApp
+//  movieapp
 //
-//  Created by Le Huynh Anh Tien on 7/10/16.
+//  Created by Le Huynh Anh Tien on 7/5/16.
 //  Copyright © 2016 Tien Le. All rights reserved.
 //
 
@@ -15,7 +15,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+         //Override point for customization after application launch.
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let nowPlayingNavigationController = storyboard.instantiateViewControllerWithIdentifier("MoviesNavigationController") as! UINavigationController
+        let nowPlayingViewController = nowPlayingNavigationController.topViewController as! MovieViewController
+        nowPlayingViewController.endpoint  = "now_playing"
+        nowPlayingViewController.tabBarItem.title = "Now Playing"
+        nowPlayingViewController.tabBarItem.image = UIImage(named: "now_playing")
+       
+        let topRatedNavigationController = storyboard.instantiateViewControllerWithIdentifier("MoviesNavigationController") as! UINavigationController
+        let topRatedViewController = topRatedNavigationController.topViewController as! MovieViewController
+        topRatedViewController.endpoint  = "top_rated"
+        topRatedViewController.tabBarItem.title = "Top Rated"
+        topRatedViewController.tabBarItem.image = UIImage(named: "top_rated")
+
+        let tabBarController    = UITabBarController()
+        tabBarController.viewControllers = [nowPlayingNavigationController, topRatedNavigationController]
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
+        
         return true
     }
 

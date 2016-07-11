@@ -10,4 +10,16 @@ import UIKit
 
 class MovieCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var rateLabel: UILabel!
+  
+    @IBOutlet weak var imagePoster: UIImageView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+    
+   
+
 }
