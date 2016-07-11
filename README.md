@@ -1,8 +1,8 @@
 # Project 1 - *MOVIE APP*
 
-**Name of your app** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
+**MOVIE APP* is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **X** hours spent in total
+Time spent: **10** hours spent in total
 
 ## User Stories
 
@@ -42,7 +42,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 - Add Search bar for Line View state
-Describe any challenges encountered while building the app.
+
+#Describe any challenges encountered while building the app.
 
 
 ## License
