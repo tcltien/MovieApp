@@ -26,9 +26,9 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [] List anything else that you can get done to improve the app functionality!
+-  List anything else that you can get done to improve the app functionality!
 - Improve design skill with scroll bar 
-- How to get date from a rest api 
+- How to get data from a rest api 
 - handle simple data 
 - using UIScroll, Tableview CollectionsView
 
